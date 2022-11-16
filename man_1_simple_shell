@@ -1,85 +1,87 @@
-.TH man 1 "2 Nov 2022" "0.1" "simple_shell man page"
+.\" Manpage for Simple Shell.
+.TH hsh 1 "April 07, 2020" "1.0" "hsh General Commands Manual"
 
 .SH NAME
-.B simple_shell
-- Simple shell create in C to interact with a linux operating system.
 
-.SHELLFH SYNOPSIS
- hsh [options] [file]
+.B simple_shell - hsh
+- command line interpreter or shell
 
-.SHELLFH DESCRIPTION
-Shell is a UNIX term for the interactive user interface with an operating system. The shell is the layer of programming that understands
-and executes the commands a user enters. In some systems, the shell is called a command interpreter. A shell usually implies an interface
-with a command syntax 
+.SH SYNOPSIS
 
-.B Overview
+.B  ./hsh
 
-The simple shell is a command that reads lines from either a file or the terminal, interprets them, and generally executes other commands. It is the program that is started when a user logs into the system. It incorporates many features to aid interactive use and has the advantage that the interpretative language is common to both interactive and non-interactive use (shell scripts). That is, commands can be typed directly to the running simple shell or can be put into a file, which can be executed directly by the simple shell.
-.SH Return Value
+[command_string | file]
 
-Always 0 for success, other number means failure.
+.SH DESCRIPTION
 
-.SHELLFH PATH
+simple_shell is an sh-compatible command language interpreter that executes commands. It is compiled and launched from the command line within any number of Linux versions. It contains the most basic features and functions found in the various shell programs.
 
-It will look inside al directions in PATH env variable for executable.
+.SS Overview
+The simple_shell is a command that reads lines from either a file or the terminal, interprets them, and generally executes other commands.  It is the program that is running when the user runs gcc -Wall -Werror -Wextra -pedantic *.c -o hsh and runs the executable file, ./hsh.The simple_shell implements a variety of features in addition to data storage, along with built functions and line editing capabilities.  It can be use in a interactive and non-interactive way. That is, commands can be typed directly to the running shell or can be put into a file and the file can be executed directly by the shell.
 
-.SH
+.SH RETURN VALUE
+The shell returns the error code given by the last completed command followed by either ctrl-d or exit with no status code.
 
-.SHELLFH OPTIONS
-.B simple_shell
-Command options will be typed after the main command followed by a space and a
- '-' symbol.
+.SH SYNTAX
 
-.SHELLFH EXAMPLE
+#cisfun$ <command> <flags or options> <argument 1> <argument n>
 
-[command] [options]
-$ ls -l
+.SS
+INTERACTIVE MODE
 
-.SHELLFH BUGS
-Single space required after argument.
+#cisfun$ <command>
 
 
-.SHELLFH AUTHOR
-Seriki Olawale, Bob Odurukw.TH man 1 "2 Nov 2022" "0.1" "simple_shell man page"
+.SS
+EXAMPLE 1:
+#cisfun$ /bin/ls
 
-.SH NAME
-.B simple_shell
-- Simple shell create in C to interact with a linux operating system.
+.SS
+EXAMPLE 2:
+#cisfun$ ls -l
 
-.SHELLFH SYNOPSIS
- hsh [options] [file]
+.SS
+EXAMPLE 3:
+#cisfun$ cat textfile
 
-.SHELLFH DESCRIPTION
-Shell is a UNIX term for the interactive user interface with an operating system. The shell is the layer of programming that understands
-and executes the commands a user enters. In some systems, the shell is called a command interpreter. A shell usually implies an interface
-with a command syntax 
+.SS
+EXAMPLE 4:
+#cisfun$ mkdir folder
 
-.B Overview
+.SS
+OR NON-INTERACTIVE MODE:
 
-The simple shell is a command that reads lines from either a file or the terminal, interprets them, and generally executes other commands. It is the program that is started when a user logs into the system. It incorporates many features to aid interactive use and has the advantage that the interpretative language is common to both interactive and non-interactive use (shell scripts). That is, commands can be typed directly to the running simple shell or can be put into a file, which can be executed directly by the simple shell.
-.SH Return Value
+$ echo "<command>" | ./hsh
 
-Always 0 for success, other number means failure.
+.SS
+EXAMPLE 1:
+$ echo "ls -l" | ./hsh
 
-.SHELLFH PATH
+.SH BUILTIN COMMANDS
 
-It will look inside al directions in PATH env variable for executable.
+This section lists the builtin commands which are builtin because they need to perform some operation that can't be performed by a separate process.
 
-.SH
+.SS cd
+- change directory
 
-.SHELLFH OPTIONS
-.B simple_shell
-Command options will be typed after the main command followed by a space and a
- '-' symbol.
+.SS env
+- Prints out the current environment.
 
-.SHELLFH EXAMPLE
+.SS exit [exitstatus]
+- Terminate the shell process.  If exitstatus is given it is used as the exit status of the shell; otherwise the exit status will be 0.
 
-[command] [options]
-$ ls -l
+.SS Handling Ctrl+D
+- The simple shell will be terminated.
 
-.SHELLFH BUGS
-Single space required after argument.
+.SH BUGS
+"21 Savage - a lot ft. J. Cole"
+Please report any issues to the authors.
 
+.SH AUTHOR
 
-.SHELLFH AUTHOR
-Seriki Olawale, Bob Odurukwe.
+Seriki Olawale Peter<Hollawalexzy.so@gmail.com>
+
+Odurekwe Bob Uchenna <Uchennabob@gmail.com>
+
+.SH SEE ALSO
+sh

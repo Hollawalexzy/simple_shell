@@ -1,201 +1,119 @@
-Simple Shell project 0x16.c - Shellfh -
-This is a simple UNIX command interpreter based on bash and Sh.
+0x16. C - Simple Shell
+Description
+Holberton School project incorporating all topics covered so far about learning C programming.
 
-Overview
-Shellfh is a sh-compatible command language interpreter that executes commands read from the standard input or from a file.
+The hsh is a simplified command line interpreter for the system, or shell, an aproach to the first Unix shell written by Ken Thompson. In that sence it reads lines from either a file or the terminal, interprets them, and generally executes other commands. Simple_shell is desgined to run on the linux environment.
 
-Invocation
-Usage: Shellfh Sodash is started with the standard input connected to the terminal. To start, compile all .c located in this repository by using this command:
+File Structure
+AUTHORS - List of contributors to this repository
+man_1_simple_shell - Manual page for the simple_shell
+shell.h - program header file
+main.c - Main shell file function
+buffer_handling.c - functions related to store input
+count_buffer - Counts the number of words in a string
+create_buffer - creates a string with a given bidimensional array
+create_exec_buffer - creates a bidimensional array of strings
+signal_handler.c - functions related to reading signals
+signal_handler - handles signals from keyboard interrupts
+eof - end of file declaration
+print_error - prints & perror the error msg
+print_error_code - prints & write the error msg
+memory_funcs.c - memory allocation functions
+malloc_checked - allocates memory using malloc
+_realloc - reallocates a memory block using malloc and free.
+_memset - fill memory with a constant byte
+_memcpy - copies memory area
+free_list - Function that frees a list
+string_funcs.c - functions related to string manipulation
+_strlen - return the length of the string
+_strcpy - Copy the string src to dest
+_strcmp - Compare two strings
+_strncmp - Compare n bytes of two strings
+string_funcs_2.c - functions related to string manipulation
+_strtok - Split a string up into tokens
+_strtok_r - extract tokens from strings & hold index ptr (thread safe).
+string_funcs_3.c - functions related to string manipulation
+_strchr - locate character in a string
+_strcspn - search a string for a set of bytes
+_strspn - gets length of a prefix substring
+_strdup - duplicate a specific number of bytes from a string
+_strbrk - search a string for any of a set of bytes
+string_funcs_4.c - functions related to string manipulation
+_putchar - writes the character c to stdout
+_puts - writes the character c to stdout
+word_count - counts words given a char delimiter
+_strncat - concatenates two strings by n bytes
+str_concat - function that concatenates two strings
+struct_funcs.c - functions related to struct manipulation
+add_node - function that adds a node
+print_list - Function to print a simple list
+parser.c - lexical analyzer (lexer, tokenizer, scanner)
+lexer - Scan for standard input from terminal
+validate_command - Function that validates the command
+get_route - Function that brings the route of a command
+validate_buffer - Function that validates if buffer brings exit or env
+cpy_funs.c - functions related to environment
+_getenv - get an environment variable
+get_dir - get current working directory
+get_path - return the pathname
+env - writes environ
+Requirements
+simple_shell is designed to run in the Ubuntu 14.04 LTS linux environment and to be compiled using the GNU compiler collection v. gcc 4.8.4 with flags-Wall, -Werror, -Wextra, and -pedantic.
 
-gcc -Wall -Werror -Wextra -pedantic *.c -o shellfh
-./shellfh
-Shellfh is allowed to be invoked interactively and non-interactively. If shellfh is invoked with standard input not connected to a terminal, it reads and executes received commands in order.
+Only allowed to use the following functions and system calls:
 
-Example:
+access (man 2 access)
+chdir (man 2 chdir)
+close (man 2 close)
+closedir (man 3 closedir)
+execve (man 2 execve)
+exit (man 3 exit)
+fork (man 2 fork)
+free (man 3 free)
+fstat (man 2 fstat)
+getcwd (man 3 getcwd)
+getline (man 3 getline)
+kill (man 2 kill)
+lstat (man 2 lstat)
+malloc (man 3 malloc)
+open (man 2 open)
+opendir (man 3 opendir)
+perror (man 3 perror)
+read (man 2 read)
+readdir (man 3 readdir)
+signal (man 2 signal)
+stat (man 2 stat)
+strtok (man 3 strtok)
+wait (man 2 wait)
+waitpid (man 2 waitpid)
+wait3 (man 2 wait3)
+wait4 (man 2 wait4)
+write (man 2 write)
+_exit (man 2 _exit)
+Usage
+Clone this repository onto your local machine, compile with the flags listed below
 
-$ echo "echo 'alx_africa'" | ./shellfh
-'alx_africa'
-$
-When shelfh is invoked with standard input connected to a terminal (determined by isatty(3), the interactive mode is opened. shellfh Will be using the following prompt ^-^ .
+git clone https://github.com/VIDMORE/simple_shell.git
+cd simple_shell
+gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
+Run the simple shell
 
-Example:
+./hsh
+then you can use commands like in sh
 
-$./shellfh
-^-^
-If a command line argument is invoked, shellfh will take that first argument as a file from which to read commands.
+$ ls -al
+To exit the simple shell
 
-Example:
-
-$ cat text
-echo 'alx'
-$ ./shellfh text
-'alx'
-$
-Environment
-Upon invocation, shellfh receives and copies the environment of the parent process in which it was executed. This environment is an array of name-value strings describing variables in the format NAME=VALUE. A few key environmental variables are:
-
-HOME
-The home directory of the current user and the default directory argument for the cd builtin command.
-
-$ echo "echo $HOME" | ./shellfh
-/home/vagrant
-PWD
-The current working directory as set by the cd command.
-
-$ echo "echo $PWD" | ./shellfh
-/home/vagrant/alx/simple_shell
-OLDPWD
-The previous working directory as set by the cd command.
-
-$ echo "echo $OLDPWD" | ./shellfh
-/home/vagrant/alx/bog-062019-test_suite
-PATH
-A colon-separated list of directories in which the shell looks for commands. A null directory name in the path (represented by any of two adjacent colons, an initial colon, or a trailing colon) indicates the current directory.
-
-$ echo "echo $PATH" | ./shellfh
-/home/vagrant/.cargo/bin:/home/vagrant/.local/bin:/home/vagrant/.rbenv/plugins/ruby-build/bin:/home/vagrant/.rbenv/shims:/home/vagrant/.rbenv/bin:/home/vagrant/.nvm/versions/node/v10.15.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/vagrant/.cargo/bin:/home/vagrant/workflow:/home/vagrant/.local/bin
-Command Execution
-After receiving a command, shellfh tokenizes it into words using " " as a delimiter. The first word is considered the command and all remaining words are considered arguments to that command. shellfh then proceeds with the following actions:
-
-If the first character of the command is neither a slash (\) nor dot (.), the shell searches for it in the list of shell builtins. If there exists a builtin by that name, the builtin is invoked.
-If the first character of the command is none of a slash (\), dot (.), nor builtin, shellfh searches each element of the PATH environmental variable for a directory containing an executable file by that name.
-If the first character of the command is a slash (\) or dot (.) or either of the above searches was successful, the shell executes the named program with any remaining given arguments in a separate execution environment.
-Exit Status
-shellfh returns the exit status of the last command executed, with zero indicating success and non-zero indicating failure. If a command is not found, the return status is 127; if a command is found but is not executable, the return status is 126. All builtins return zero on success and one or two on incorrect usage (indicated by a corresponding error message).
-
-Signals
-While running in interactive mode, shellfh ignores the keyboard input ctrl+c. Alternatively, an input of End-Of-File ctrl+d will exit the program.
-
-User hits ctrl+d in the foutrh command.
-
-$ ./shellfh
-^-^ ^C
-^-^ ^C
-^-^ ^C
-^-^
-Variable Replacement
-shellfh interprets the $ character for variable replacement.
-
-$ENV_VARIABLE
-ENV_VARIABLE is substituted with its value.
-
-Example:
-
-$ echo "echo $PWD" | ./shellfh
-/home/vagrant/alx/simple_shell
-$?
-? is substitued with the return value of the last program executed.
-
-Example:
-
-$ echo "echo $?" | ./shellfh
-0
-$$
-The second $ is substitued with the current process ID.
-
-Example:
-
-$ echo "echo $$" | ./shellfh
-3855
-Comments
-shellfh ignores all words and characters preceeded by a # character on a line.
-
-Example:
-
-$ echo "echo 'alx_africa' #this will be ignored!" | ./shellfh
-'alx_africa'
-Operators
-shellfh specially interprets the following operator characters:
-
-; - Command separator
-Commands separated by a ; are executed sequentially.
-
-Example:
-
-$ echo "echo 'hello' ; echo 'world'" | ./shellfh
-'hello'
-'world'
-&& - AND logical operator
-command1 && command2: command2 is executed if, and only if, command1 returns an exit status of zero.
-
-Example:
-
-$ echo "error! && echo 'alx_africa'" | ./shellfh
-./shellby: 1: error!: not found
-$ echo "echo 'my name is' && echo 'alx_africa'" | ./shellfh
-'my name is'
-'alx_africa'
-|| - OR logical operator
-command1 || command2: command2 is executed if, and only if, command1 returns a non-zero exit status.
-
-Example:
-
-$ echo "error! || echo 'wait for it'" | ./shellfh
-./shellfh: 1: error!: not found
-'wait for it'
-The operators && and || have equal precedence, followed by ;.
-
-Builtin Commands
-cd
-Usage: cd [DIRECTORY]
-Changes the current directory of the process to DIRECTORY.
-If no argument is given, the command is interpreted as cd $HOME.
-If the argument - is given, the command is interpreted as cd $OLDPWD and the pathname of the new working directory is printed to standard output.
-If the argument, -- is given, the command is interpreted as cd $OLDPWD but the pathname of the new working directory is not printed.
-The environment variables PWD and OLDPWD are updated after a change of directory.
-Example:
-
-$ ./shellfh
-^-^ pwd
-/home/vagrant/holberton/simple_shell
-$ cd ../
-^-^ pwd
-/home/vagrant/alx
-^-^ cd -
-^-^ pwd
-/home/vagrant/alx/simple_shell
 exit
-Usage: exit [STATUS]
-Exits the shell.
-The STATUS argument is the integer used to exit the shell.
-If no argument is given, the command is interpreted as exit 0.
-Example:
+"or in keyboard Ctrl + D"
+Bugs
 
-$ ./shellfh
-$ exit
-env
-Usage: env
-Prints the current environment.
-Example:
 
-$ ./shellfh
-$ env
-NVM_DIR=/home/vagrant/.nvm
-...
-setenv
-Usage: setenv [VARIABLE] [VALUE]
-Initializes a new environment variable, or modifies an existing one.
-Upon failure, prints a message to stderr.
-Example:
+"21 Savage - a lot ft. J. Cole" Please report any issues to the authors.
 
-$ ./shellfh
-$ setenv NAME Alx_africa
-$ echo $NAME
-Alx_africa
-unsetenv
-Usage: unsetenv [VARIABLE]
-Removes an environmental variable.
-Upon failure, prints a message to stderr.
-Example:
+Authors
+Seriki Olawale Peter <hollawalezy.so@gmail.com>
 
-$ ./shellfh
-$ setenv NAME Alx_africa
-$ unsetenv NAME
-$ echo $NAME
+Bob Odurukwe Uchenna <Uchennabob@gmail.com>>
 
-$
-Authors & Copyrights
-Seriki Olawale Peter <Hollawalexzy>
-Odurukwe Bob uchenna <Lord-Bish>
-More information
-Shellfh is a simple shell unix command interpreter that is part of the software Engineering low level programming module at alx_africa and is intended to emulate the basics sh shell. All the information given in this README is based on the shellfh and bash man (1) pages.
+License

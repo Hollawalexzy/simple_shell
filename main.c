@@ -1,17 +1,26 @@
-#include "main.h"
+#include "shell.h"
 
-/*
- * main - func with infinite loop 
- * @argc: arguement to main
- * @argv: arguement to main 
- * Return: loop
-*/
-int main(int argc, char argv)
+/**
+ * main - main function for the shell
+ * @argc: number of arguments passed to main
+ * @argv: array of arguments passed to main
+ * Return: 0 on success , errno on failure
+ */
+
+int main(int argc, char *argv[])
 {
-	(void)argv;
-	(void)argc;
+	char **values = NULL;
 
-	signal(SIGINT, controlC);
-	prompt();
-	return (0);
+	if (argc != 1)
+	{
+		values = argv;
+
+		lexer(values);
+	}
+	else
+	{
+		values = argv;
+		return (lexer(values));
+	}
+	return (EXIT_SUCCESS);
 }
