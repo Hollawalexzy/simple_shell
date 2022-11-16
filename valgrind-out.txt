@@ -3,8 +3,8 @@
 ==13866== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
 ==13866== Command: ./hsh
 ==13866== Parent PID: 4283
-==13866== 
---13866-- 
+==13866==
+--13866--
 --13866-- Valgrind options:
 --13866--    --leak-check=full
 --13866--    --show-leak-kinds=all
@@ -14,7 +14,7 @@
 --13866--    --log-file=valgrind-out.txt
 --13866-- Contents of /proc/version:
 --13866--   Linux version 4.4.0-18362-Microsoft (Microsoft@Microsoft.com) (gcc version 5.4.0 (GCC) ) #476-Microsoft Fri Nov 01 16:53:00 PST 2019
---13866-- 
+--13866--
 --13866-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-avx-avx2-bmi
 --13866-- Page sizes: currently 4096, max supported 4096
 --13866-- Valgrind library directory: /usr/lib/valgrind
@@ -34,18 +34,18 @@
 ==13866== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-13866-by-david-on-???
 ==13866== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-13866-by-david-on-???
 ==13866== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-13866-by-david-on-???
-==13866== 
+==13866==
 ==13866== TO CONTROL THIS PROCESS USING vgdb (which you probably
 ==13866== don't want to do, unless you know exactly what you're doing,
 ==13866== or are doing some strange experiment):
 ==13866==   /usr/lib/valgrind/../../bin/vgdb --pid=13866 ...command...
-==13866== 
+==13866==
 ==13866== TO DEBUG THIS PROCESS USING GDB: start GDB like this
 ==13866==   /path/to/gdb ./hsh
 ==13866== and then give GDB the following command
 ==13866==   target remote | /usr/lib/valgrind/../../bin/vgdb --pid=13866
 ==13866== --pid is optional if only one valgrind process is running
-==13866== 
+==13866==
 ==13866== error calling PR_SET_PTRACER, vgdb might block
 --13866-- REDIR: 0x401f2f0 (ld-linux-x86-64.so.2:strlen) redirected to 0x580608c1 (???)
 --13866-- REDIR: 0x401f0d0 (ld-linux-x86-64.so.2:index) redirected to 0x580608db (???)
@@ -103,12 +103,12 @@
 --13866-- REDIR: 0x4ed3950 (libc.so.6:free) redirected to 0x4c30cd0 (free)
 --13866-- REDIR: 0x4fca1d0 (libc.so.6:__strchrnul_avx2) redirected to 0x4c37020 (strchrnul)
 --13866-- REDIR: 0x4fca590 (libc.so.6:__strlen_avx2) redirected to 0x4c32cf0 (strlen)
-==13866== 
+==13866==
 ==13866== HEAP SUMMARY:
 ==13866==     in use at exit: 0 bytes in 0 blocks
 ==13866==   total heap usage: 340 allocs, 340 frees, 16,506 bytes allocated
-==13866== 
+==13866==
 ==13866== All heap blocks were freed -- no leaks are possible
-==13866== 
+==13866==
 ==13866== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 ==13866== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
