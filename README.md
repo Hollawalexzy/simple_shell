@@ -1,5 +1,5 @@
 I0x16. C - Simple Shell
-Description
+Descriptions
 Holberton School project incorporating all topics covered so far about learning C programming.
 
 The hsh is a simplified command line interpreter for the system, or shell, an aproach to the first Unix shell written by Ken Thompson. In that sence it reads lines from either a file or the terminal, interprets them, and generally executes other commands. Simple_shell is desgined to run on the linux environment.
