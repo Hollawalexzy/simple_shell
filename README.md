@@ -114,5 +114,4 @@ Bugs
 Authors
 Seriki Olawale Peter <hollawalezy.so@gmail.com>
 
-Bob Odurukwe Uchenna <Uchennabob@gmail.com>>
-
+Bob Odurukwe Uchenna <Uchennabobbyfrade@yahoo.com>
