@@ -91,10 +91,8 @@ wait4 (man 2 wait4)
 write (man 2 write)
 _exit (man 2 _exit)
 Usage
-Clone this repository onto your local machine, compile with the flags listed below
-
-git clone https://github.com/VIDMORE/simple_shell.git
-cd simple_shell
+Clone this repository onto your local machine, using git clone https://github.com/Hollawalexzy/simple_shell 
+compile with 
 gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
 Run the simple shell
 
