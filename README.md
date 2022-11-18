@@ -1,4 +1,4 @@
-0x16. C - Simple Shell
+I0x16. C - Simple Shell
 Description
 Holberton School project incorporating all topics covered so far about learning C programming.
 
@@ -116,4 +116,3 @@ Seriki Olawale Peter <hollawalezy.so@gmail.com>
 
 Bob Odurukwe Uchenna <Uchennabob@gmail.com>>
 
-License
